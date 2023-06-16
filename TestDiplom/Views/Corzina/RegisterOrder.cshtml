@@ -1,0 +1,108 @@
+﻿@model TestDiplom.Areas.AdminPanel.Models.Order
+
+@{
+    ViewBag.Title = "GameStore: форма заказа";
+}
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/TestDiplom.styles.css" asp-append-version="true" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+
+
+<h2>Оформить заказ сейчас</h2>
+<p>Пожалуйста введите ваши контактные данные, и мы сразу отправим товар!</p>
+
+
+
+@using (Html.BeginForm("RegisterOrder", "Corzina", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+        
+    
+    @Html.ValidationMessageFor(m => m.Phone)
+    
+    <h3>Данные</h3>
+    <h3>Ваш заказ:</h3>
+<dt class="col-sm-2">
+    Название
+</dt>
+@foreach(var y in ViewBag.Zakaz)
+{
+    
+<dd class="col-sm-10">
+        @y.title_bok
+    </dd>
+
+}
+    <div class="form-group">
+        <label>Ваше имя:</label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+        
+    </div>
+
+    <h3>Адрес доставки</h3>
+    <div class="form-group">
+        <label>Адрес:</label>
+        @Html.TextBoxFor(x => x.Line1, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Line1)
+        
+    </div>
+    <div class="form-group">
+        <label>Город:</label>
+        @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.City)
+        
+    </div>
+    <div class="form-group">
+        <label>Страна:</label>
+        @Html.TextBoxFor(x => x.Country, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Country)
+    </div>
+    
+
+<div id="test2" class="form-group" style="display: none;">
+        <label>Ваш номер телефона:</label>
+        @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Phone)
+    </div>
+    <div id="test4" style="display: none;">
+        <label for="file">Загрузите подтверждающие документы для проверки:</label>
+        <input type="file"
+                min="1" max="9999" name="Image" multiple="multiple"
+               accept="image/png, image/jpeg">
+     </div>
+
+    <h3>Опции</h3>
+    <input id="test" type="checkbox" onclick=addbox() >
+    <label for="test">Нужно ли Вам позвонить перед доставкой ?</label> <br />
+    <input id="test3" type="checkbox" onclick=addbox2()>
+    <label for="test3">Являеесь ли Вы инвалидом?</label>
+     
+
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Обработать заказ" />
+    </div>
+}
+@section Scripts {
+<script type="text/javascript">
+        function addbox() {
+            if (document.getElementById('test').checked) {
+                document.getElementById('test2').style.display = 'block';
+            } else {
+                document.getElementById('test2').style.display = 'none';
+            }
+        }
+        function addbox2() {
+            if (document.getElementById('test3').checked) {
+                document.getElementById('test4').style.display = 'block';
+            } else {
+                document.getElementById('test4').style.display = 'none';
+            }
+        }
+    </script>
+}

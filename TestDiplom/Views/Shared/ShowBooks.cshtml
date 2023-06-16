@@ -1,0 +1,189 @@
+﻿@using static TestDiplom.Controllers.HomeController;
+@model PaginatedList<TestDiplom.Models.books>
+
+
+<div class="table-responsive">
+
+        <h1>Status Fond</h1>
+
+    @using (Html.BeginForm("ShowBooks", "Home"))
+        {
+
+            <b>Книга</b>
+            @Html.TextBox("searching") <br />
+
+            <b>Год создания</b>
+            @Html.TextBox("searching1")
+
+            <br />
+            <input type="submit" value="Начать поиск" />
+        }  
+            <table class="table table-striped">
+                
+           @if (Model.Count() < 0)
+                    {
+                       <tr>
+                    <td colspan="3" style="color:red">
+                        Не найдено ни одной книги по Вашему запросу
+                    </td>
+                    </tr>
+
+
+            }
+            else
+            {
+                <thead class="thead-dark">
+                
+                
+                            <tr>
+
+                                <th>
+                                    Книга
+                                </th>
+                                <th>
+                        <a asp-action="ShowBooks" asp-route-sortOrder="@ViewBag.Test">Год создания</a>
+                                </th>
+                                    <th>
+                                        Имя автора
+                                    </th>
+                                    <th>
+                                        Отчество автора
+                                    </th>
+                                    <th>
+                                        Фамилия автора
+                                    </th>
+
+
+
+                                <th>
+                                    @if (User.IsInRole("admin"))
+                                    {
+                                        <a asp-action="AddOrEdit" class="btn btn-sm btn-success">
+                                            <i class="fa-solid fa-plus"></i> New
+                                        </a>
+                                    }
+                                </th>
+                            </tr>
+                    </thead>
+          
+              <tbody>
+               
+                @foreach (var item in Model)
+                {
+
+                   
+                   
+                        <tr>
+                        
+                            <td>
+                                    @Html.DisplayFor(modelItem => item.title)
+                            </td>
+                            <td>
+                                    @Html.DisplayFor(modelItem => item.year_create)
+                            </td>
+                            
+
+
+
+                        <td>
+                            @foreach (var item2 in item.connect)
+                            {
+                                    @Html.DisplayFor(modelItem => item2.c.first_name_author)<br/>
+                            }
+                            </td>
+
+                        <td>
+                            @foreach (var item2 in item.connect)
+                            {
+                                @Html.DisplayFor(modelItem => item2.c.patronymic_author)
+
+                                <br />
+                            }
+                        </td>
+                        <td>
+                            @foreach (var item2 in item.connect)
+                            {
+                                @Html.DisplayFor(modelItem => item2.c.patronymic_author)
+
+                                <br />
+                            }
+                        </td>
+                           
+
+                            <td>
+                     
+                                
+                            @if (User.IsInRole("admin"))
+                            {
+                                
+                                <form asp-action="Delete" asp-route-id="@item.book_id">
+                                    
+                                        <a asp-action="AddOrEdit" asp-route-id="@item.book_id" class="btn btn-warning">
+                                            Добавить или удалить
+                                        </a>
+                                    <a asp-action="AddAuthor" asp-route-id="@item.book_id" class="btn btn-warning">
+                                        Добавить автора
+                                    </a>
+                                        <a asp-action="Details" asp-route-id="@item.book_id" class="btn btn-warning">
+                                            Подробнее
+                                        </a>
+                                        
+                                        <button type="submit" class="btn btn-danger" 
+                                        onclick="return confirm('Удалить?')"> Delete
+                                            </button>
+                                     
+                                       
+                                    </form>
+                                }
+                                else
+                                {
+                                <form>
+
+                                    
+                                    <a asp-action="Details" asp-route-id="@item.book_id" class="btn btn-warning">
+                                        Подробнее
+                                    </a>
+                                   
+                                   
+                                  
+
+
+                                </form>
+                                    
+                                    
+
+                                }
+                              
+                            
+                        </td>
+                    </tr>
+                }
+                    
+                </tbody> 
+                }
+        </table>
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="ShowBooks"
+      
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="ShowBooks"
+       
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+    
+    
+
+</div>
+
+

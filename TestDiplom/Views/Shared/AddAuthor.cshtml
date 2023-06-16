@@ -1,0 +1,46 @@
+﻿@model TestDiplom.Models.author
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>Transaction</h1>
+        <form asp-action="AddOrEdit" autocomplete="off">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            
+            <div class="form-group">
+                <label asp-for="first_name_author" class="control-label"></label>
+                <input asp-for="first_name_author" class="form-control" />
+                <span asp-validation-for="first_name_author" class=" text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="patronymic_author" class="control-label"></label>
+                <input asp-for="patronymic_author" class="form-control" />
+                <span asp-validation-for="patronymic_author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="surname_author" class="control-label"></label>
+                <input asp-for="surname_author" class="form-control" />
+                <span asp-validation-for="surname_author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="date_birth" class="control-label"></label>
+                <input asp-for="date_birth" class="form-control" />
+                <span asp-validation-for="date_birth" class="text-danger"></span>
+            </div>
+            
+
+
+
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input name="action" formmethod="post" asp-controller="Home" asp-action="AddAuthor" asp-route-id="@ViewBag.Chaos" type="submit" value="Добавить" class="btn btn-primary w-100" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <a asp-controller="Home" asp-action="ShowBooks" class="btn btn-secondary  w-100">View All</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<TestDiplom.Areas.AdminPanel.Models.CartLine>
+@{
+    ViewData["Title"] = "Transaction";
+}
+
+<h2>Ваша корзина</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название книги</th>
+            <th class="text-left">Год создания</th>
+            <th class="text-left">Год публикации</th>
+            
+            <th class="text-right">Кол-во</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model)
+        {
+            <tr>
+                <td class="text-left">@line.title_bok</td>
+                <td class="text-left">@line.Year_creating</td>
+                <td class="text-left">@line.Year_public</td>
+                
+                <td class="text-right">@line.Quantity</td>
+                <td>
+                    <div >
+                         <form asp-action="DeleteToCart" asp-route-id="@line.id">
+                                    <div class="btn-group btn-sm"> 
+                                        <button type="submit" class="btn btn-danger" 
+                                        onclick="return confirm('Are you sure to delete this record?')"> Delete
+                                            </button>
+                                     </div>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Итого:</td>
+  
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-primary" asp-controller="Home" asp-action="ShowBooks">Продолжить покупки</a>
+    <a class="btn btn-primary" asp-controller="Corzina" asp-action="RegisterOrder">Оформить заказ</a>
+</div>

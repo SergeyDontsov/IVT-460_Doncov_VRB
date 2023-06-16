@@ -1,0 +1,64 @@
+﻿
+<h2>Календарь событий</h2>
+
+<div id="calendar-wrapper">
+    <div id='calendar'></div>
+</div>
+
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<div class="modal hide" id="eventModal" role="dialog"  aria-labelledby="eventModalLabel">
+    <div class="modal-dialog modal-lg" style="width:1000px;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="eventModalLabel">Event</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="eventForm">
+                    
+                    <div class="form-group row">
+                        <label for="" class="col-md-4 col-form-label"></label>Title
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="EventTitle">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-md-4 col-form-label"></label>Start Time
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="StartTime">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-md-4 col-form-label"></label>End Time
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="EndTime">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-md-4 col-form-label"></label>Description
+                        <div class="col-sm-9">
+                            <textarea class="form-control" id="Description" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-4 offset-sm-9">
+                            Весь день 
+                            <input type="checkbox" id="AllDay" />
+                        </div>
+                    </div>
+                    <input type="hidden" id="isNewEvent" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deleteEvent">Delete</button>
+                <div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="eventModalSave">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,153 @@
+﻿
+
+<div class="table-responsive">
+
+    <h1>Текущие заказы</h1>
+
+    
+    <table class="table table-striped">
+
+        <thead class="thead-dark">
+
+
+            <tr>
+
+                <th>
+                    Адрес
+                </th>
+                <th>
+                    Получатель
+                </th>
+                <th>
+                    Телефон
+                </th>
+                <th>
+                    Заказанные книги
+                </th>
+                <th>
+                    Год создания
+                </th>
+                <th>
+                   Год публикации
+                </th>
+                <th>
+                    Стоимость
+                </th>
+                <th>
+                    Кол-во
+                </th>
+                <th>
+                    Фото справки для проверки
+                </th>
+                <th>
+                    Телефон курьера
+                </th>
+                <th>
+                    Имя курьера
+                </th>
+
+            </tr>
+         </thead>
+        <tbody>
+            
+            @foreach (var item2 in ViewBag.Dis)
+            {
+                <tr>
+                <td>
+                @item2.Адрес
+                </td>
+                <td>
+                 @item2.Получатель
+                </td>
+                <td>
+                    @item2.Телефон_Получателя
+                </td>
+                <td>
+                    @foreach (var item3 in item2.Zakaz)
+                    {
+                        @item3.title_bok
+
+                        <br />
+                    }
+                </td>
+
+                <td>
+                    @foreach (var item3 in item2.Zakaz)
+                    {
+                        @item3.cost_bo
+
+                        <br />
+                    }
+                </td>
+
+                <td>
+                    @foreach (var item3 in item2.Zakaz)
+                    {
+                        @item3.Year_creating
+
+                        <br />
+                    }
+                </td>
+
+                <td>
+                    @foreach (var item3 in item2.Zakaz)
+                    {
+                        @item3.Year_public
+
+                        <br />
+                    }
+                </td>
+                <td>
+                    @foreach (var item3 in item2.Zakaz)
+                    {
+                        @item3.Quantity 
+
+                        <br/>
+                    }
+                </td>
+                    @if (@item2.Image != null)
+                    {
+                        <td>
+                            @Html.Raw("<img style='width:180px; height:160px;' src=\"data:image/jpeg;base64,"
+                + Convert.ToBase64String(@item2.Image) + "\" />")
+                        </td>
+                    }
+                    @if (@item2.Телефон_Курьера != null)
+                    {
+                        @foreach (var item3 in ViewBag.Jim)
+                        {
+                            <td>
+                                @item2.Телефон_Курьера
+                            </td>
+                            <td>
+                                @item2.Имя_Курьера
+                            </td>
+                            <td>
+                                <form asp-action="DeleteCourier" asp-route-id="@item2.id">
+                                <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Удалить?')">
+                                    Delete
+                                </button>
+
+
+                            </form>
+                            </td>
+                        }
+                    }
+                    else
+                    {
+                            <td>
+                        <a asp-action="AddCourier" asp-route-id="@item2.id" class="btn btn-sm btn-success">
+                                <i class="fa-solid fa-plus"></i> New
+                         </a>
+                        </td>
+                    }
+
+                </tr>
+            }
+            
+            
+        </tbody>
+       </table>
+    </div>
+   

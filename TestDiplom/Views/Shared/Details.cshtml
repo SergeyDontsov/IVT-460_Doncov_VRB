@@ -1,0 +1,131 @@
+﻿@model List<TestDiplom.Models.author_in_books>
+<div>
+    <h4>Информация о экземплярах книги</h4>
+    <hr />
+    <a asp-action="AddPublication" asp-route-id="@ViewBag.Jim.book_id" class="btn btn-sm btn-success">
+        <i class="fa-solid fa-plus"></i> New
+    </a>
+    @foreach (var item in ViewBag.Jeo)
+                {
+        <dl class="row">
+            <dt class="col-sm-2">
+                Название
+            </dt>
+            <dd class="col-sm-10">
+                @ViewBag.Jim.title
+            </dd>
+            <dt class="col-sm-2">
+                Год создания книги
+            </dt>
+            <dd class="col-sm-10">
+                @ViewBag.Jim.year_create
+            </dd>
+            <dt class="col-sm-2">
+                Стоимость
+            </dt>
+            <dd class="col-sm-10">
+                @item.cost_book
+            </dd>
+         </dl>   <table class="table table-striped">
+                    
+                        <thead class="thead-dark">
+                             <tr>
+                    <th>
+                                    Имя автора<br>
+                                </th>
+                    <th>
+                                    Отчество автора <br>
+                                </th>
+                    <th>
+                                    Фамилия автора
+                                </th>
+                    <th>
+                                    Дата рождения автора
+                                </th>
+                            </tr>
+                            </thead>
+                @foreach (var item2 in ViewBag.Jes)
+                {
+                
+                        <tbody>
+                            <tr>
+                                <td class="col-sm-2">
+                                            @item2.first_name_author <br>
+                                         </td>
+                                
+                                <td class="col-sm-2">
+                                                @item2.patronymic_author
+                                        </td>
+                               
+                                <td class="col-sm-2">
+                                                @item2.surname_author
+                                        </td>
+                                
+                                <td class="col-sm-2">
+                                                @item2.date_birth
+                                </td>
+                                </tr>
+                         </tbody>
+
+            }
+        </table>
+                <dl>
+            <dt class="col-sm-2">
+                Номер издания
+            </dt>
+            <dd class="col-sm-10">
+                @item.pub_num
+            </dd>
+            <dt class="col-sm-2">
+                Год издания
+            </dt>
+            <dd class="col-sm-10">
+                @item.pub_year
+            </dd>
+            <dt class="col-sm-2">
+                Доступна ли для заказа?
+            </dt>
+            <dd class="col-sm-10">
+                @item.availability
+            </dd>
+            <dt class="col-sm-2">
+                Страна издания
+            </dt>
+            <dd class="col-sm-10">
+                @item.yo3.country_name
+            </dd>
+            <dt class="col-sm-2">
+                Язык данной публикации
+            </dt>
+            <dd class="col-sm-10">
+                @item.yo2.lang_name
+            </dd>
+            <dt class="col-sm-2">
+                Наименование валюты,в которой измеряется стоимость книги
+            </dt>
+            <dd class="col-sm-10">
+                @item.yo1.currency_name
+            </dd>
+            <dt class="col-sm-2">
+                Кол-во страниц
+            </dt>
+            <dd class="col-sm-10">
+                @item.book_vol
+            </dd>
+            <dt class="col-sm-2">
+                Тираж
+            </dt>
+            <dd class="col-sm-10">
+                @item.сirculation
+            </dd>
+        
+        </dl>
+        <a asp-controller="Corzina" asp-action="AddToCart" asp-route-id="@item.book_id" class="btn btn-warning">
+            Добавить в корзину
+        </a>
+    }
+
+    <form> 
+        <a asp-action="ShowBooks">Вернуться к списку</a>
+    </form>
+</div>

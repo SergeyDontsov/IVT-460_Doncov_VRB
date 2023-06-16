@@ -1,0 +1,90 @@
+﻿@model TestDiplom.Models.publication
+<div class="row">
+<div class="col-md-6 offset-md-3">
+    <h1>Transaction</h1>
+    <form asp-action="AddPublication" autocomplete="off">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        
+        <div class="form-group">
+            <label asp-for="pub_num" class="control-label"></label>
+                <input asp-for="pub_num" class="form-control" />
+                <span asp-validation-for="pub_num" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="pub_year" class="control-label"></label>
+                <input asp-for="pub_year" class="form-control" />
+                <span asp-validation-for="pub_year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="book_vol" class="control-label"></label>
+                <input asp-for="book_vol" class="form-control" />
+                <span asp-validation-for="book_vol" class=" text-danger"></span>
+            </div>
+        <div class="form-group">
+                <label asp-for="сirculation" class="control-label"></label>
+                <input asp-for="сirculation" class="form-control" />
+                <span asp-validation-for="сirculation" class="text-danger"></span>
+        </div>
+            <div class="form-group">
+                <label asp-for="cost_book" class="control-label"></label>
+                <input asp-for="cost_book" class="form-control" />
+                <span asp-validation-for="cost_book" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="availability" class="control-label"></label>
+                <select class="form-control" id="c.availability">
+                    <option value="False">No</option>
+                    <option value="True">Yes</option>
+                </select>
+                <span asp-validation-for="availability" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="currency_id" class="control-label"></label>
+                <select asp-for="currency_id" class="form-control"
+                        asp-items="ViewBag.Teachers">
+                    <option value="">-- Select Department --</option>
+                </select>
+                <span asp-validation-for="currency_id" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="lang_id" class="control-label"></label>
+                <select asp-for="lang_id" class="form-control"
+                        asp-items="ViewBag.Teachers2">
+                    <option value="">-- Select Department2 --</option>
+                </select>
+                <span asp-validation-for="lang_id" class="text-danger" />
+            </div>
+            <div class="form-group">
+                <label asp-for="country_id" class="control-label"></label>
+                <select asp-for="country_id" class="form-control"
+                        asp-items="ViewBag.Teachers3">
+                    <option value="">-- Select Department3 --</option>
+                </select>
+                <span asp-validation-for="country_id" class="text-danger" />
+            </div>
+        <div class="form-group">
+            <label asp-for="book_id" class="control-label"></label>
+            <select asp-for="book_id" class="form-control"
+                    asp-items="ViewBag.Tea">
+                <option value="">-- Select Department --</option>
+            </select>
+            <span asp-validation-for="book_id" class="text-danger" />
+        </div>
+        
+
+
+
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-primary w-100" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <a asp-controller="Home" asp-action="Details" class="btn btn-secondary  w-100">View All</a>
+            </div>
+        </div>
+    </form>
+</div>
+</div>

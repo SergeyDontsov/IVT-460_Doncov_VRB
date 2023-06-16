@@ -1,0 +1,49 @@
+﻿@using TestDiplom.Controllers
+@model List<TestDiplom.Models.Message>
+
+   
+    
+    
+    @if (User.IsInRole("admin"))
+{
+    <p>Здесь Вы можете просматривать сообщения от заказчика</p>
+
+    @using (Html.BeginForm("ChatList", "Home", FormMethod.Get))
+    {
+        @Html.TextBox("text")
+        <input name="action" formmethod="post" asp-controller="Home" asp-action="ChatList" type="submit" value="Отправить сообщение" />
+    }
+    @if (@ViewData["Count"] != null)
+    {
+        @foreach (var item2 in Model)
+        {
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Отправитель
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(t => item2.Username)
+                </dd>
+                <dt class="col-sm-2">
+                    Сообщение
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(t => item2.Text)
+                </dd>
+                <dt class="col-sm-2">
+                    Время отправки сообщения
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(t => item2.TimeSend)
+                </dd>
+
+            </dl>
+        }
+
+    }
+
+}
+else
+{
+    
+}
